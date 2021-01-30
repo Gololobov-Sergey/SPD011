@@ -1,6 +1,7 @@
 #include<iostream>
 #include<ctime>
 #include<iomanip>
+#include<typeinfo>
 using namespace std;
 
 //type name(parametr)
@@ -8,14 +9,33 @@ using namespace std;
 //	oper;
 //}
 
-void starline()
+//void starline()
+//{
+//	for (size_t i = 0; i < 10; i++)
+//	{
+//		cout << "*";
+//	}
+//	cout << endl;
+//}
+
+//void starline(int n = 10)
+//{
+//	for (size_t i = 0; i < n; i++)
+//	{
+//		cout << "*";
+//	}
+//	cout << endl;
+//}
+
+void starline(int n = 10, char t = '*')
 {
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < n; i++)
 	{
-		cout << "*";
+		cout << t;
 	}
 	cout << endl;
 }
+
 
 int max(int a, int b)
 {
@@ -24,10 +44,10 @@ int max(int a, int b)
 	return b;
 }
 
-int Sum(int a, int b)
+template<class T1, class T2>
+auto Sum(T1 a, T2 b)
 {
-	int c = a + b;
-	return c;
+	return a + b;
 }
 
 float avg(int a, int b, int c)
@@ -40,22 +60,77 @@ bool isEven(int a)
 	return a % 2 == 0;
 }
 
-void showArr(int a[], int n)
+template<class T>
+void showArr(T a[], int n)
 {
+	cout << typeid(T).name() << endl;
 	for (size_t i = 0; i < n; i++)
 	{
 		cout << a[i] << " ";
-		return;
+	}
+	cout << endl;
+}
+
+template<class T>
+void showArr2D(T a[][10], int row, int col)
+{
+	for (size_t i = 0; i < row; i++)
+	{
+		for (size_t j = 0; j < col; j++)
+		{
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+
+template<class T>
+void fillArr(T a[], int n, int min = 0, int max = 9)
+{
+	if ((string)typeid(T).name() == "char")
+	{
+		for (int i = 0; i < n; i++)
+		{
+			a[i] = rand() % 26 + 65;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < n; i++)
+		{
+			a[i] = rand() % (max - min + 1) + min;
+		}
 	}
 }
 
-void fillArr(int a[], int n)
+
+void bubbleSortArr(int a[], int n)
 {
-	for (int i = 0; i < n; i++)
+	for (size_t i = 0; i < n-1; i++)
 	{
-		a[i] = rand() % 10;
+		for (size_t j = 0; j < n - 1 - i; j++)
+		{
+			if (a[j] < a[j + 1])
+				swap(a[j], a[j + 1]);
+		}
 	}
 }
+
+void selectionSortArr(int a[], int n)
+{
+	for (size_t i = 0; i < n - 1; i++)
+	{
+		int imin = i;
+		for (size_t j = i + 1; j < n; j++)
+		{
+			if (a[j] < a[imin])
+				imin = j;
+		}
+		swap(a[i], a[imin]);
+	}
+}
+
 
 int Increment(int a)
 {
@@ -63,33 +138,77 @@ int Increment(int a)
 	return ++a;
 }
 
+int fact(int n)
+{
+	int f = 1;
+	for (size_t i = 1; i <= n; i++)
+	{
+		f *= i;
+	}
+	return f;
+}
+
+
+int fact_r(int n)
+{
+	if (n == 1)
+		return 1;
+	return n * fact_r(n - 1);
+}
+
+void num(int n)
+{
+	cout << n << " ";
+	if(n > 1)
+		num(n - 1);
+}
+
+void num_n(int n)
+{
+	if (n > 1)
+		num_n(n - 1);
+	cout << n << " ";
+}
 
 int main()
 {
-	
+	srand(time(0));
 
-	int a = 5;
-	cout << a << endl; //5
-	a = Increment(a);
-	cout << a << endl; //
-
+	// cout << fact_r(10) << endl;
+	num_n(5);
 	/*starline();
-	starline();
-	starline();
-	float a = 4, b = 5;
-	int c = Sum(a, b);
-	cout << avg(a,b, 6) << endl;*/
+	starline(20);
+	starline(30, '&');
+
+	int arr[10][10] = {0};
+	int row = 3, col = 8;
+	showArr2D(arr, row, col);*/
+	//auto a = 0;
+	// << typeid(a).name() << endl;
+	//int a = 5;
+	//cout << a << endl; //5
+	//a = Increment();
+	//cout << a << endl; //
+
+	//starline();
+	//starline();
+	//starline();
+	//float a = 4, b = 5;
+	//int c = Sum(3, 5);
+	//cout << Sum(3.8, 5.5) << endl;
 	/*const int n = 10;
 	int a[n], c = 0;
-	fillArr(a, n);
-	showArr(a, n);
-	for (size_t i = 0; i < n; i++)
+	fillArr(a, n);*/
+	//fillArr(a, n, 50, 100);
+	//showArr(a, n);
+	/*for (size_t i = 0; i < n; i++)
 	{
 		if (isEven(a[i]))
 			c++;
-	}
-	cout << c << endl;
-	showArr(a, n);*/
+	}*/
+	//cout << c << endl;
+	//bubbleSortArr(a, n);
+	//showArr(a, n);
 
 	/*int n;
 	cin >> n;*/
@@ -150,7 +269,7 @@ int main()
 	}
 	cout << c << endl;*/
 
-	srand(time(0));
+	
 
 	//const int n = 10;
 
