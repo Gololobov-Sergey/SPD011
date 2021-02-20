@@ -2,181 +2,102 @@
 #include<ctime>
 #include<iomanip>
 #include<typeinfo>
+#include"MyFunc.h"
 using namespace std;
 
-//type name(parametr)
-//{
-//	oper;
-//}
 
-//void starline()
-//{
-//	for (size_t i = 0; i < 10; i++)
-//	{
-//		cout << "*";
-//	}
-//	cout << endl;
-//}
-
-//void starline(int n = 10)
-//{
-//	for (size_t i = 0; i < n; i++)
-//	{
-//		cout << "*";
-//	}
-//	cout << endl;
-//}
-
-void starline(int n = 10, char t = '*')
-{
-	for (size_t i = 0; i < n; i++)
-	{
-		cout << t;
-	}
-	cout << endl;
-}
-
-
-int max(int a, int b)
-{
-	if (a > b)
-		return a;
-	return b;
-}
-
-template<class T1, class T2>
-auto Sum(T1 a, T2 b)
-{
-	return a + b;
-}
-
-float avg(int a, int b, int c)
-{
-	return (a + b + c) / 3.;
-}
-
-bool isEven(int a)
-{
-	return a % 2 == 0;
-}
-
-template<class T>
-void showArr(T a[], int n)
-{
-	cout << typeid(T).name() << endl;
-	for (size_t i = 0; i < n; i++)
-	{
-		cout << a[i] << " ";
-	}
-	cout << endl;
-}
-
-template<class T>
-void showArr2D(T a[][10], int row, int col)
-{
-	for (size_t i = 0; i < row; i++)
-	{
-		for (size_t j = 0; j < col; j++)
-		{
-			cout << a[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
-
-template<class T>
-void fillArr(T a[], int n, int min = 0, int max = 9)
-{
-	if ((string)typeid(T).name() == "char")
-	{
-		for (int i = 0; i < n; i++)
-		{
-			a[i] = rand() % 26 + 65;
-		}
-	}
-	else
-	{
-		for (int i = 0; i < n; i++)
-		{
-			a[i] = rand() % (max - min + 1) + min;
-		}
-	}
-}
-
-
-void bubbleSortArr(int a[], int n)
-{
-	for (size_t i = 0; i < n-1; i++)
-	{
-		for (size_t j = 0; j < n - 1 - i; j++)
-		{
-			if (a[j] < a[j + 1])
-				swap(a[j], a[j + 1]);
-		}
-	}
-}
-
-void selectionSortArr(int a[], int n)
-{
-	for (size_t i = 0; i < n - 1; i++)
-	{
-		int imin = i;
-		for (size_t j = i + 1; j < n; j++)
-		{
-			if (a[j] < a[imin])
-				imin = j;
-		}
-		swap(a[i], a[imin]);
-	}
-}
-
-
-int Increment(int a)
-{
-	//
-	return ++a;
-}
-
-int fact(int n)
-{
-	int f = 1;
-	for (size_t i = 1; i <= n; i++)
-	{
-		f *= i;
-	}
-	return f;
-}
-
-
-int fact_r(int n)
-{
-	if (n == 1)
-		return 1;
-	return n * fact_r(n - 1);
-}
-
-void num(int n)
-{
-	cout << n << " ";
-	if(n > 1)
-		num(n - 1);
-}
-
-void num_n(int n)
-{
-	if (n > 1)
-		num_n(n - 1);
-	cout << n << " ";
-}
 
 int main()
 {
 	srand(time(0));
 
+	//int a = 5;
+	//int b = 8;
+
+	//int *pa = &a;
+	//cout << "&a = " << pa << endl;
+	///*cout << " a = " << a << endl;
+	//*pa = 122;
+	//cout << " a = " << a << endl;*/
+	//cout << pa + 1 << endl;
+
+
+	/*int *pb = &b;
+	cout << "&b = " << pb << endl;
+	cout << " b = " << b << endl;
+	
+	*pb = 500;
+	cout << " b = " << b << endl;*/
+
+	//cout << (pa < pb) << endl;
+
+	/*int *pc = nullptr;
+	if(pc)
+		cout << *pc << endl;
+	pc = &a;*/
+
+	/*const int n = 10;
+	int a[n];
+	fillArr(a, n);
+	showArr(a, n);
+
+	int *p = a;
+	for (size_t i = 0; i < n; i++)
+	{
+		cout << *(p + i)  << " ";
+	}
+	cout << endl;
+
+	for (int* pi = a; pi < &a[n]; pi++)
+	{
+		cout << *pi << " ";
+	}*/
+
+	/*int a = 5, b = 4;
+	cout << a << " " << b << endl;
+	my_swap(&a, &b);
+	cout << a << " " << b << endl;
+	int *pa = &a;
+
+	char t = 'r';
+	char *pt = &t;
+
+	double d = 4.4;
+	double *pd = &d;
+
+	cout << sizeof(pa) << endl;
+	cout << sizeof(pd) << endl;
+	cout << sizeof(pt) << endl;*/
+
+	int n;
+	cin >> n;
+	int *p = new int[n];
+
+	fillArr(p, n);
+	showArr(p, n);
+
+	p = addElemArrayPos(p, &n, 100);
+
+	showArr(p, n);
+
+	p = delElemArray(p, &n);
+	showArr(p, n);
+
+
+	delete []p;
+
+
+	
+	/*cout << a << endl;
+	cout << typeid(a).name() << endl;
+	cout << sizeof(a) << endl;
+	cout << &a << endl;*/
+
+
 	// cout << fact_r(10) << endl;
-	num_n(5);
-	/*starline();
+	/*cout << pow_my(2, -3) << endl;
+	cout << fibo(7) << endl;
+	starline();
 	starline(20);
 	starline(30, '&');
 
