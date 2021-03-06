@@ -35,7 +35,7 @@ bool isEven(int a)
 }
 
 template<class T>
-void showArr(T *a, int n)
+void showArr(const T *a, const int n)
 {
 	for (size_t i = 0; i < n; i++)
 	{
@@ -77,8 +77,8 @@ void fillArr(T *a, int n, int min = 0, int max = 9)
 	}
 }
 
-
-void bubbleSortArr(int a[], int n)
+template<class T>
+void bubbleSortArr(T a[], int n)
 {
 	for (size_t i = 0; i < n - 1; i++)
 	{
@@ -176,33 +176,72 @@ T* addElemArray(T *a, int *n, T num)
 }
 
 template<class T>
-T* delElemArray(T *a, int *n)
+void delElemArray(T *&a, int &n)
 {
-	T* p1 = new T[*n - 1];
-	for (size_t i = 0; i < *n-1; i++)
+	T* p1 = new T[n - 1];
+	for (size_t i = 0; i < n-1; i++)
 	{
 		p1[i] = a[i];
 	}
 	delete[]a;
-	(*n)--;
-	return p1;
+	n--;
+	a = p1;
 }
 
 
 template<class T>
-T* addElemArrayPos(T *a, int *n, T num, int pos = 0)
+void addElemArrayPos(T *&a, int &n, T num, int pos = 0)
 {
-	T *p1 = new T[*n + 1];
+	T *p1 = new T[n + 1];
 	for (size_t i = 0; i < pos; i++)
 	{
 		p1[i] = a[i];
 	}
 	p1[pos] = num;
-	for (size_t i = pos; i < *n; i++)
+	for (size_t i = pos; i < n; i++)
 	{
 		p1[i+1] = a[i];
 	}
 	delete[]a;
-	(*n)++;
-	return p1;
+	n++;
+	a = p1;
+}
+
+
+int len(char *st)
+{
+	int i = 0;
+	while (st[i] != '\0')
+	{
+		i++;
+	}
+	return i;
+}
+
+
+int countWord(char *st)
+{
+	int w = 0, i = 0;
+	while (st[i] != '\0')
+	{
+		if (st[i] == ' ' && st[i + 1] != ' ' && st[i+1] != '\0')
+			w++;
+		i++;
+	}
+	return w + 1;
+}
+
+char* delWord(char *st, char *old)
+{
+	char *res = new char[strlen(st)];
+	_strset(res, '\0');
+	char *p = st;
+	while (strstr(p, old))
+	{
+		char *t = strstr(p, old);
+		strncat(res, p, t - p);
+		p = t + strlen(old);
+	}
+	strcat(res, p);
+	return res;
 }

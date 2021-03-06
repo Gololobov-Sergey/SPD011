@@ -1,10 +1,12 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<ctime>
 #include<iomanip>
 #include<typeinfo>
 #include"MyFunc.h"
+#include<string.h>
+#include<string>
 using namespace std;
-
 
 
 int main()
@@ -69,25 +71,124 @@ int main()
 	cout << sizeof(pd) << endl;
 	cout << sizeof(pt) << endl;*/
 
-	int n;
+	/*int n;
 	cin >> n;
 	int *p = new int[n];
 
 	fillArr(p, n);
 	showArr(p, n);
 
-	p = addElemArrayPos(p, &n, 100);
+	addElemArrayPos(p, n, 100);
 
 	showArr(p, n);
 
-	p = delElemArray(p, &n);
+	delElemArray(p, n);
 	showArr(p, n);
 
 
-	delete []p;
-
+	delete []p;*/
 
 	
+	///// 06.03.2021
+
+	//int a = 5, b = 8;
+	//const int *pa1 = &a;  // указатель на константное значение
+	//cout << *pa1 << endl;
+	////pa1 = &b;     // можно
+	////*pa1 = 66;    // нельзя
+
+	//int * const pa2 = &a;  // константный указатель
+	////pa2 = &b;     // нельзя
+	////*pa2 = 66;    // можно
+
+
+	//const int *const pa3 = &a;  // константный указатель на константное значение
+	////pa3 = &b;     // нельзя
+	////*pa3 = 66;    // нельзя
+
+	//int b = 8;
+	//const int &rb = b;
+	////rb = a; // нельзя
+	////cout << rb << endl;
+
+	//////////////////////////////////////////////
+	/*int a[] = { 1,2,3,4 };
+	char s = 'a';
+	char st[] = { 'H', 'e', 'l', 'l', 'o', '\0' };
+	char st1[] = "Hello c++";
+	cout << a << endl;
+	cout << st1 << endl;*/
+	
+	//cout << strlen(st1) << endl;
+
+	//char *st1, *st2;
+	//st1 = new char[80];
+	//st2 = new char[80]{ "" };
+	////cin.getline(st1, 80);
+	//cin.getline(st2, 80);
+	
+	/*strcpy(st2, st1);
+	cout << st2 << endl;*/
+	
+	/*strncpy(st2, st1, 5);
+	cout << st2 << endl;*/
+
+	/*strcat(st2, st1);
+	cout << st2 << endl;*/
+
+	/*st2 = strncat(st2 + 5, st1, 10);
+	cout << st2 << endl;*/
+
+	/*char *s0 = strstr(st2, st1);
+	if(s0)
+		cout << s0 << endl;*/
+	
+	/*char *s0 = strchr(st2, '0');
+	if (s0)
+		cout << s0 << endl;*/
+
+	//cout << strcmp(st1, st2) << endl;
+	//cout << strncmp(st1, st2, 5) << endl;
+	//cout << _stricmp(st1, st2) << endl;
+	//cout << _strnicmp(st1, st2, 5) << endl;
+
+
+	//cout << _strupr(st2) << endl;
+	//cout << _strlwr(st2) << endl;
+
+	//cout << _strset(st2, 'a') << endl;
+	//cout << _strnset(st2, 'a', 5) << endl;
+	
+	//cout << _strrev(st2) << endl;
+
+	//bubbleSortArr(st2, strlen(st2));
+	//cout << st2 << endl;
+
+	/*double a = atof(st1);
+	cout << a << endl;*/
+
+	//_itoa(255, st2, 36);
+	//cout << countWord(st2) << endl;
+
+	//char *st;// = "Hello C++, C#, SQL, C++, Python";
+	//char *old;// = "C++";
+	//st = new char[80];
+	//old = new char[80];
+	//cin.getline(st, 80);
+	//cin.getline(old, 80);
+	//char *p = delWord(st, old);
+	//cout << p << endl;
+	//delete[]st;
+	//delete[]old;
+
+	//string st1;
+	//getline(cin, st1);
+	//cout << st1 << endl;
+	//string st2 = "lkjeowejr";
+	//string st = st1 + st2;
+	//cout << st << endl;
+
+
 	/*cout << a << endl;
 	cout << typeid(a).name() << endl;
 	cout << sizeof(a) << endl;
